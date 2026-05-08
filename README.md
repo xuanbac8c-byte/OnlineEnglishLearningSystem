@@ -62,6 +62,13 @@ Du an duoc phat trien dua tren kien truc MVC pattern tren Laravel Framework
 ## Cac cau lenh su dung
 `php artisan migrate`: tao database va cac bang da cau hinh
 `php artisan make:model TenBang -m`: Tao mot tep tin model "TenBang" -m: tao migration tuong ung voi model tren
+
+
+---
+
+## Trang thai phat trien
+
+=======
 `composer show`: Kiem tra package (thu vien) da cai thong qua composer
 `composer require illuminate/database`: Tai package **illuminate/database** chua cac thu vien quan trong Eloquent ORM, Query Builder...
 `php artisan make:migration create_user_table --create=users`: tao migrations cua bang user ten **create_user_table**, tham so cuoi cho biet tao bang users moi (options: **--table=users** cho biet la sua bang da ton tai)
