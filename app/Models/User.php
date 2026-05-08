@@ -1,49 +1,54 @@
-<?php
+<?php 
+    namespace App\Models;
 
-namespace App\Models;
+    use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+    class User extends Model {
+        protected $table = 'users';
+        protected $primaryKey = 'user_id';
+        public $timestamps = true;
 
-class User extends Authenticatable
-{
-    /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+        protected $fillable = [
+            'fullname',
+            'email',
+            'password_hash',
+            'avatar_url',
+            'role',
+            'created_at',
+            'updated_at'
         ];
+        protected $casts = [
+            'user_id' => 'integer',
+            'fullname' => 'string',
+            'email' => 'string',
+            'password_hash' => 'string',
+            'avatar_url' => 'string',
+            'role' => 'string',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
+
+        public function payments() : HasMany {
+            return $this->hasMany(Payment::class,'user_id');
+        }
+        public function enrollments() : HasMany {
+            return $this->hasMany(Enrollment::class, 'user_id');
+        }
+        public function courses() : HasMany {
+            return $this->hasMany(Course::class, 'user_id');
+        }
+        public function courseReviews() : HasMany{
+            return $this->hasMany(CourseReview::class, 'user_id');
+        }
+        public function lessonProgresses() : HasMany {
+            return $this->hasMany(LessonProgress::class, 'user_id');
+        }
+        public function certificates() : HasMany {
+            return $this->hasMany(Certificate::class, 'user_id');
+        }
+        public function quizAttempts() : HasMany {
+            return $this->hasMany(QuizAttempt::class, 'user_id');
+        }
     }
-}
+?>
