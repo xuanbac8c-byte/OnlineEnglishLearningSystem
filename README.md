@@ -69,6 +69,12 @@ Du an duoc phat trien dua tren kien truc MVC pattern tren Laravel Framework
 ---
 
 ## Trang thai phat trien
+#### Module Người dùng (User) — CRUD đầy đủ
+
+---
+ 
+#### Module Khóa học (Course) — CRUD đầy đủ
+
 
 Thiet ke ERD:
 ![img](/public/images/OnlineEnglishLearningSystem.drawio.png)
