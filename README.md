@@ -63,10 +63,30 @@ Du an duoc phat trien dua tren kien truc MVC pattern tren Laravel Framework
 `php artisan migrate`: tao database va cac bang da cau hinh
 `php artisan make:model TenBang -m`: Tao mot tep tin model "TenBang" -m: tao migration tuong ung voi model tren
 
+
 ---
 
 ## Trang thai phat trien
 
+=======
+`composer show`: Kiem tra package (thu vien) da cai thong qua composer
+`composer require illuminate/database`: Tai package **illuminate/database** chua cac thu vien quan trong Eloquent ORM, Query Builder...
+`php artisan make:migration create_user_table --create=users`: tao migrations cua bang user ten **create_user_table**, tham so cuoi cho biet tao bang users moi (options: **--table=users** cho biet la sua bang da ton tai)
+`php artisan migrate`: load tat ca cac migration va tao bang trong database
+---
+
+## Trang thai phat trien
+#### Module Người dùng (User) — CRUD đầy đủ
+
+---
+ 
+#### Module Khóa học (Course) — CRUD đầy đủ
+
+
+Thiet ke ERD:
+![img](/public/images/OnlineEnglishLearningSystem.drawio.png)
+
+Phase 1: Thiet ke moi quan he giua cac bang trong Models
 
 ## Cai dat he thong
 -- su dung git clone `https://github.com/NguyenQuangDiep12/OnlineEnglishLearningSystem.git`
