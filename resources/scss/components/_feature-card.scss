@@ -1,0 +1,66 @@
+// resources/scss/components/_feature-card.scss
+
+@use '../abstracts/variables' as *;
+
+.features {
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 24px;
+    }
+}
+
+.feature-card {
+
+    padding: 36px 28px;
+
+    border-radius: 24px;
+
+    background: rgba(255,255,255,0.9);
+
+    border: 1px solid $border-color;
+
+    transition: all 0.35s ease;
+
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    &__icon {
+
+        width: 72px;
+        height: 72px;
+
+        border-radius: 20px;
+
+        background: #eff6ff;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin-bottom: 28px;
+
+        i {
+            font-size: 30px;
+            color: $secondary-color;
+        }
+    }
+
+    &__title {
+        font-size: 24px;
+        font-weight: 700;
+
+        margin-bottom: 16px;
+    }
+
+    &__description {
+        font-size: 16px;
+        line-height: 1.8;
+
+        color: $text-light;
+    }
+}

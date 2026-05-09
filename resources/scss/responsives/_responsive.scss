@@ -1,0 +1,45 @@
+@media (max-width: 992px) {
+
+    .features__grid,
+    .courses__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .reviews__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-bar__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .navbar {
+
+        padding: 0 32px;
+
+        &__links {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+
+    .features__grid,
+    .courses__grid,
+    .reviews__grid,
+    .stats-bar__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .navbar {
+
+        height: auto;
+
+        padding: 20px;
+
+        flex-direction: column;
+
+        gap: 20px;
+    }
+}

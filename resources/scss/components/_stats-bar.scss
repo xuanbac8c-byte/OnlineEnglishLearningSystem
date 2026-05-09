@@ -1,0 +1,50 @@
+// resources/scss/components/_stats-bar.scss
+
+@use '../abstracts/variables' as *;
+
+.stats-bar {
+
+    background: white;
+
+    border-radius: 28px;
+
+    border: 1px solid $border-color;
+
+    padding: 40px 48px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 24px;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+
+        &:not(:last-child) {
+            border-right: 1px solid $border-color;
+        }
+
+        i {
+            font-size: 32px;
+            color: $secondary-color;
+        }
+    }
+
+    &__number {
+        font-size: 28px;
+        font-weight: 800;
+
+        color: $secondary-color;
+    }
+
+    &__label {
+        font-size: 14px;
+        color: $text-light;
+    }
+}

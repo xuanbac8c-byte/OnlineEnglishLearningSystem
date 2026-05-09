@@ -1,0 +1,65 @@
+@use '../abstracts/variables' as * ;
+@use '../components/feature-card';
+@use '../components/course-card';
+@use '../components/review-card';
+@use '../components/stats-bar';
+
+// Hero
+.hero {
+    min-height: 100vh;
+
+    padding: 120px 80px 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 80px;
+
+    background:
+        radial-gradient(circle at top left, #dbeafe 0%, transparent 30%),
+        $background-color;
+
+    &__content {
+        flex: 1;
+
+        h1 {
+            font-size: 72px;
+            line-height: 1.1;
+            font-weight: 800;
+
+            margin-bottom: 28px;
+
+            max-width: 700px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.9;
+
+            color: $text-light;
+
+            max-width: 560px;
+
+            margin-bottom: 40px;
+        }
+    }
+
+    .starting_now {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    &__visual {
+        flex: 1;
+
+        display: flex;
+        justify-content: flex-end;
+
+        img {
+            width: 100%;
+            max-width: 680px;
+        }
+    }
+}

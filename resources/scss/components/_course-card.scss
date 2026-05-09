@@ -1,0 +1,101 @@
+@use '../abstracts/variables' as *;
+
+.course-card {
+    background: white;
+    border: 1px solid $border;
+    border-radius: $radius;
+    overflow: hidden;
+    transition: all 0.25s ease;
+    box-shadow: $shadow-sm;
+ 
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: $shadow-md;
+        border-color: transparent;
+    }
+ 
+    &__thumb {
+        position: relative;
+        img {
+            width: 100%;
+            height: 175px;
+            object-fit: cover;
+            display: block;
+        }
+    }
+ 
+    &__level {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: $secondary-color;
+        color: white;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 100px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+ 
+    &__body { padding: 18px; }
+ 
+    &__meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+ 
+    &__lang {
+        font-size: 12px;
+        color: $secondary-color;
+        font-weight: 600;
+        background: #eff6ff;
+        padding: 3px 8px;
+        border-radius: 6px;
+    }
+ 
+    &__rating {
+        font-size: 13px;
+        color: #f59e0b;
+        font-weight: 600;
+        small { color: $text-light; font-weight: 400; }
+    }
+ 
+    &__title {
+        font-size: 15px;
+        font-weight: 700;
+        color: $text-dark;
+        line-height: 1.4;
+        margin-bottom: 8px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+ 
+    &__instructor {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        color: $text-mid;
+        margin-bottom: 16px;
+        svg { color: $text-light; }
+    }
+ 
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 14px;
+        border-top: 1px solid $border;
+    }
+ 
+    &__price {
+        font-size: 17px;
+        font-weight: 800;
+        color: $text-dark;
+    }
+}
