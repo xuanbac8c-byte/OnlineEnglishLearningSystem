@@ -1,0 +1,15 @@
+@use '../abstracts/variables' as *;
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+
+    h2 {
+        font-size: 36px;
+        font-weight: 800;
+        color: $text-dark;
+        margin-bottom: 12px;
+    }
+
+    p { font-size: 16px; color: $text-mid; }
+}

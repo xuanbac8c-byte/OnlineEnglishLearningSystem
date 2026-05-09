@@ -1,0 +1,26 @@
+// Màu chính
+$primary-color: white;
+$secondary-color: rgb(40, 40, 254);
+
+// Text
+$text-color: #0f172a;       // alias dùng trong các file cũ
+$text-dark: #0f172a;
+$text-mid: #475569;
+$text-light: #94a3b8;
+
+// Background
+$background-color: #ffffff;  // alias dùng trong các file cũ
+$bg-light: #f8fafc;
+
+// Border
+$border-color: #e2e8f0;      // alias dùng trong các file cũ
+$border: #e2e8f0;
+
+// Shadow
+$shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+$shadow-md: 0 8px 24px rgba(0,0,0,0.10);
+$shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+
+// Border radius
+$radius: 12px;
+$radius-lg: 20px;

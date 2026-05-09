@@ -1,0 +1,309 @@
+@use '../abstracts/variables' as * ;
+
+.auth-section {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: stretch;
+}
+ 
+.auth-card {
+    flex: 1;
+    max-width: 520px;
+    padding: 60px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: white;
+ 
+    &--wide { max-width: 640px; }
+ 
+    &__header {
+        margin-bottom: 36px;
+        h2 { font-size: 28px; font-weight: 800; margin: 16px 0 8px; }
+        p { font-size: 15px; color: $text-mid; }
+    }
+ 
+    &__footer {
+        text-align: center;
+        font-size: 14px;
+        color: $text-mid;
+        margin-top: 28px;
+    }
+}
+ 
+.auth-logo {
+    font-size: 24px;
+    font-weight: 900;
+    color: $secondary-color;
+    text-decoration: none;
+}
+ 
+.auth-social {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+ 
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px;
+    border: 1.5px solid $border;
+    border-radius: 10px;
+    background: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: $text-dark;
+    transition: all 0.2s;
+ 
+    &:hover { background: $bg-light; border-color: #94a3b8; }
+ 
+    &--facebook { color: #1877F2; }
+}
+ 
+.auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: $text-light;
+    font-size: 13px;
+    margin-bottom: 28px;
+ 
+    &::before, &::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: $border;
+    }
+}
+ 
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+ 
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+ 
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+ 
+    label {
+        font-size: 14px;
+        font-weight: 600;
+        color: $text-dark;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+ 
+    &--row {
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+}
+ 
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+ 
+    .input-icon {
+        position: absolute;
+        left: 14px;
+        color: $text-light;
+        pointer-events: none;
+    }
+ 
+    input {
+        width: 100%;
+        padding: 12px 14px 12px 42px;
+        border: 1.5px solid $border;
+        border-radius: 10px;
+        font-size: 14px;
+        color: $text-dark;
+        outline: none;
+        transition: border 0.2s;
+        background: white;
+ 
+        &:focus { border-color: $secondary-color; box-shadow: 0 0 0 3px rgba(40,40,254,0.08); }
+        &::placeholder { color: $text-light; }
+    }
+ 
+    .input-toggle {
+        position: absolute;
+        right: 12px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: $text-light;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        &:hover { color: $text-dark; }
+    }
+}
+ 
+.form-link {
+    color: $secondary-color;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+}
+ 
+.form-error {
+    font-size: 12px;
+    color: #ef4444;
+    margin-top: -4px;
+}
+ 
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: $text-mid;
+    cursor: pointer;
+    font-weight: 400 !important;
+ 
+    input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        margin-top: 2px;
+        flex-shrink: 0;
+        accent-color: $secondary-color;
+    }
+}
+ 
+.role-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+ 
+.role-option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    border: 2px solid $border;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+ 
+    input { display: none; }
+ 
+    &__icon { font-size: 28px; }
+ 
+    strong { display: block; font-size: 14px; font-weight: 700; }
+    small { font-size: 12px; color: $text-light; }
+ 
+    &:hover { border-color: $secondary-color; }
+ 
+    &--active {
+        border-color: $secondary-color;
+        background: #eff6ff;
+    }
+}
+ 
+.password-strength {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: -8px;
+ 
+    &__bar {
+        flex: 1;
+        height: 6px;
+        background: $border;
+        border-radius: 100px;
+        overflow: hidden;
+    }
+ 
+    &__fill {
+        height: 100%;
+        border-radius: 100px;
+        transition: all 0.3s;
+        width: 0%;
+    }
+ 
+    span { font-size: 12px; color: $text-mid; white-space: nowrap; min-width: 80px; }
+}
+ 
+// Auth Panel (right side)
+.auth-panel {
+    flex: 1;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 80%, $secondary-color 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+ 
+    &__inner {
+        max-width: 440px;
+        color: white;
+ 
+        h3 { font-size: 24px; font-weight: 800; margin-bottom: 28px; }
+    }
+ 
+    &__quote {
+        .quote-mark { font-size: 72px; line-height: 0.6; color: rgba(255,255,255,0.2); margin-bottom: 16px; }
+        p { font-size: 18px; line-height: 1.7; color: #e2e8f0; margin-bottom: 24px; }
+    }
+ 
+    &__stats {
+        display: flex;
+        gap: 32px;
+        margin-top: 40px;
+        padding-top: 32px;
+        border-top: 1px solid rgba(255,255,255,0.15);
+ 
+        > div {
+            display: flex;
+            flex-direction: column;
+            strong { font-size: 24px; font-weight: 900; }
+            span { font-size: 13px; color: rgba(255,255,255,0.6); }
+        }
+    }
+ 
+    &__benefits {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+ 
+        li {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+    }
+}
+ 
+.benefit-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+ 
+.quote-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+ 
+    img { width: 48px; height: 48px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); }
+    strong { display: block; font-size: 15px; }
+    small { color: rgba(255,255,255,0.6); font-size: 13px; }
+}
+ 

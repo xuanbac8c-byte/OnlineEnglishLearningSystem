@@ -1,0 +1,36 @@
+@use '../abstracts/variables' as * ;
+
+.page-header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    color: white;
+    padding: 80px 80px 70px;
+    text-align: center;
+ 
+    &__inner {
+        max-width: 680px;
+        margin: 0 auto;
+    }
+ 
+    &__tag {
+        display: inline-block;
+        background: rgba(255,255,255,0.15);
+        color: #93c5fd;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 6px 16px;
+        border-radius: 100px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+ 
+    h1 {
+        font-size: 48px;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 16px;
+        span { color: #60a5fa; }
+    }
+ 
+    p { font-size: 17px; color: #cbd5e1; line-height: 1.7; }
+}

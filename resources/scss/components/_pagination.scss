@@ -1,0 +1,40 @@
+@use '../abstracts/variables' as * ;
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+ 
+    &__btn {
+        width: 40px;
+        height: 40px;
+        border: 1.5px solid $border;
+        border-radius: 8px;
+        background: white;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        color: $text-mid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+ 
+        &:hover:not(&--disabled):not(&--active) {
+            border-color: $secondary-color;
+            color: $secondary-color;
+        }
+ 
+        &--active {
+            background: $secondary-color;
+            border-color: $secondary-color;
+            color: white;
+        }
+ 
+        &--disabled { opacity: 0.4; cursor: not-allowed; }
+    }
+ 
+    &__dots { color: $text-light; padding: 0 4px; }
+}
+ 

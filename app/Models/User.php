@@ -1,8 +1,9 @@
 <?php 
     namespace App\Models;
 
-    use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Enums\UserRole;
+use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Relations\HasMany;
 
     class User extends Model {
         protected $table = 'users';
@@ -24,7 +25,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
             'email' => 'string',
             'password_hash' => 'string',
             'avatar_url' => 'string',
-            'role' => 'string',
+            'role' => UserRole::class,
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];

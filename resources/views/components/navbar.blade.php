@@ -1,7 +1,7 @@
 <nav class="navbar">
     <!-- Column 1: Logo -->
      <div class="navbar__logo">
-        <a href="/home">
+        <a href="/">
             <div class="logo-title">E-Learn</div>
             <span>English Online</span>
         </a>
@@ -9,7 +9,7 @@
 
     <!-- Column 2: Navigation Links -->
     <div class="navbar__links">
-        <a href="/home">Home</a>
+        <a href="/">Home</a>
         <a href="/courses">Courses</a>
         <a href="/about">Road Maps</a>
         <a href="/contact">Instructors</a>

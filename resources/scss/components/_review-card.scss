@@ -1,0 +1,74 @@
+// resources/scss/components/_review-card.scss
+
+@use '../abstracts/variables' as *;
+
+.reviews {
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 24px;
+    }
+}
+
+.review-card {
+
+    padding: 32px;
+
+    border-radius: 24px;
+
+    background: white;
+
+    border: 1px solid $border-color;
+
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+    }
+
+    &__stars {
+        display: flex;
+        gap: 4px;
+
+        i {
+            color: #f59e0b;
+        }
+    }
+
+    &__text {
+        font-size: 16px;
+        line-height: 1.9;
+
+        color: $text-light;
+    }
+
+    &__author {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+
+        margin-top: 16px;
+
+        img {
+            width: 52px;
+            height: 52px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+        }
+    }
+
+    &__name {
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    &__role {
+        font-size: 13px;
+        color: $text-light;
+    }
+}
