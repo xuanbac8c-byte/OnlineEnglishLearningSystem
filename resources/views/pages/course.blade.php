@@ -83,7 +83,17 @@
             @endphp
 
             @foreach($mockCourses as $course)
-                @include('components.course-card', ['course' => $course])
+                <x-course-card
+                    :id="$course['id']"
+                    :thumbnail="$course['thumbnail']"
+                    :level="$course['level']"
+                    :language="$course['language']"
+                    :rating="$course['rating']"
+                    :reviews="$course['reviews']"
+                    :title="$course['title']"
+                    :instructor="$course['instructor']"
+                    :price="$course['price']"
+                />
             @endforeach
         </div>
 
@@ -106,7 +116,6 @@
 </section>
 
 <script>
-    // Level tab switching
     document.querySelectorAll('.level-tab').forEach(tab => {
         tab.addEventListener('click', () => {
             document.querySelectorAll('.level-tab').forEach(t => t.classList.remove('level-tab--active'));

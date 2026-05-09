@@ -8,6 +8,11 @@
 // Layout
 @use './layouts/navbar';
 @use './layouts/footer';
+@use './layouts/hero';
+@use './layouts/page-header';
+@use './layouts/section-header';
+@use './layouts/section';
+@use './layouts/cta';
 
 // Components
 @use './components/buttons';
@@ -29,8 +34,4 @@
 // Responsive
 @use './responsives/responsive';
 
-
-
 @import '@fortawesome/fontawesome-free/css/all.min.css';
-
-

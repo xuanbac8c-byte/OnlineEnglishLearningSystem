@@ -52,20 +52,21 @@
 
             <div class="section-heading">
                 <h2>Khóa học phổ biến</h2>
-                <a href="#" class="view-all">Xem tất cả</a>
+                <a href="/courses" class="view-all">Xem tất cả</a>
             </div>
 
             <div class="courses__wrapper" id="coursesWrapper">
                 <div class="courses__grid">
 
-                    @foreach($courses as $course)
+                    @foreach($courses as $index => $course)
                         <x-course-card
-                            :image="$course->image"
+                            :id="$index + 1"
+                            :thumbnail="$course->image"
                             :level="$course->level"
                             :title="$course->title"
-                            :lessons="$course->lessons"
                             :rating="$course->rating"
                             :price="$course->price"
+                            instructor=""
                         />
                     @endforeach
 
