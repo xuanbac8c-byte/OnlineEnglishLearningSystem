@@ -1,7 +1,7 @@
 <?php
 
     use App\Models\QuizAnswer;
-    use Ramsey\Collection\Collection;
+    use Illuminate\Support\Collection;
 
     interface IQuizAnswerService {
     public function saveAnswer(int $attemptId, int $questionId, array $data): QuizAnswer;

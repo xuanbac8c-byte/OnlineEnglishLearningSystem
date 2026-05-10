@@ -1,7 +1,7 @@
 <?php
 
     use App\Models\CourseReview;
-    use Ramsey\Collection\Collection;
+use Illuminate\Support\Collection;
 
     interface ICourseReviewService {
     public function getByCourse(int $courseId): Collection;

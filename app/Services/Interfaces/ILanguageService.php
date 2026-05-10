@@ -1,7 +1,7 @@
 <?php
 
     use App\Models\Language;
-    use Ramsey\Collection\Collection;
+    use Illuminate\Support\Collection;
 
     interface ILanguageService {
         public function getAll(): Collection;

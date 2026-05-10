@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Lesson;
-use Ramsey\Collection\Collection;
+    use App\Models\Lesson;
+    use Illuminate\Support\Collection;
 
     interface ILessonService {
     public function getBySection(int $sectionId): Collection;
