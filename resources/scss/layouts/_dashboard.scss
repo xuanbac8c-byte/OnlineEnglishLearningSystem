@@ -1,0 +1,703 @@
+@use '../abstracts/variables' as *;
+
+// ============================================================
+// DASHBOARD LAYOUT — dùng chung cho admin / instructor / student
+// ============================================================
+
+.dash-body {
+    background: $bg-light;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+// ── Bố cục chính ──────────────────────────────────────────
+
+.dash-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+// ── Sidebar ────────────────────────────────────────────────
+
+.dash-sidebar {
+    width: 240px;
+    min-height: 100vh;
+    background: #0f172a;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    transition: width 0.25s ease, transform 0.25s ease;
+    overflow: hidden;
+
+    &--collapsed {
+        width: 68px;
+
+        .dash-sidebar__logo-text,
+        .dash-sidebar__nav-link span,
+        .dash-sidebar__nav-badge,
+        .dash-sidebar__section-label,
+        .dash-sidebar__user-info { display: none; }
+
+        .dash-sidebar__user { justify-content: center; }
+        .dash-sidebar__bottom { padding: 12px 0; justify-content: center; }
+        .dash-sidebar__logout { display: none; }
+    }
+}
+
+.dash-sidebar__logo {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+
+    a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+    }
+}
+
+.dash-sidebar__logo-mark {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: $secondary-color;
+    color: white;
+    font-size: 18px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.dash-sidebar__logo-text {
+    font-size: 18px;
+    font-weight: 800;
+    color: white;
+}
+
+.dash-sidebar__section-label {
+    padding: 20px 20px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #475569;
+    text-transform: uppercase;
+}
+
+.dash-sidebar__nav {
+    flex: 1;
+    padding: 4px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow-y: auto;
+}
+
+.dash-sidebar__nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    white-space: nowrap;
+
+    i { font-size: 15px; flex-shrink: 0; width: 18px; text-align: center; }
+
+    &:hover {
+        background: rgba(255,255,255,0.06);
+        color: white;
+    }
+
+    &.active {
+        background: rgba(40,40,254,0.25);
+        color: white;
+
+        i { color: $secondary-color; }
+    }
+}
+
+.dash-sidebar__nav-badge {
+    margin-left: auto;
+    background: rgba(255,255,255,0.1);
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 100px;
+}
+
+.dash-sidebar__divider {
+    height: 1px;
+    background: rgba(255,255,255,0.07);
+    margin: 8px 0;
+}
+
+.dash-sidebar__bottom {
+    padding: 14px 20px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.dash-sidebar__user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.dash-sidebar__user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: $secondary-color;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.dash-sidebar__user-info {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.dash-sidebar__user-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dash-sidebar__user-role {
+    font-size: 11px;
+    color: #64748b;
+    text-transform: capitalize;
+}
+
+.dash-sidebar__logout {
+    color: #64748b;
+    font-size: 15px;
+    flex-shrink: 0;
+    transition: color 0.2s;
+
+    &:hover { color: #ef4444; }
+}
+
+// ── Main area ──────────────────────────────────────────────
+
+.dash-main {
+    margin-left: 240px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: margin-left 0.25s ease;
+
+    &--expanded { margin-left: 68px; }
+}
+
+// ── Topbar ─────────────────────────────────────────────────
+
+.dash-topbar {
+    height: 64px;
+    background: white;
+    border-bottom: 1px solid $border;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.dash-topbar__toggle {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: $bg-light;
+    border-radius: 8px;
+    cursor: pointer;
+    color: $text-mid;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+
+    &:hover { background: $border; color: $text-dark; }
+}
+
+.dash-topbar__title {
+    font-size: 16px;
+    font-weight: 700;
+    color: $text-dark;
+    flex: 1;
+}
+
+.dash-topbar__right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dash-topbar__search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: $bg-light;
+    border: 1px solid $border;
+    border-radius: 8px;
+    padding: 8px 14px;
+
+    i { color: $text-light; font-size: 13px; }
+
+    input {
+        border: none;
+        background: none;
+        outline: none;
+        font-size: 13px;
+        width: 180px;
+        color: $text-dark;
+
+        &::placeholder { color: $text-light; }
+    }
+}
+
+.dash-topbar__icon-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: $bg-light;
+    border-radius: 8px;
+    cursor: pointer;
+    color: $text-mid;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.2s;
+
+    &:hover { background: $border; }
+}
+
+.dash-topbar__badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 16px;
+    height: 16px;
+    background: #ef4444;
+    color: white;
+    font-size: 9px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dash-topbar__home-btn {
+    width: 36px;
+    height: 36px;
+    background: $bg-light;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $text-mid;
+    font-size: 14px;
+    transition: all 0.2s;
+
+    &:hover { background: $border; color: $secondary-color; }
+}
+
+// ── Content wrapper ────────────────────────────────────────
+
+.dash-content {
+    padding: 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+// ── Shared UI primitives ───────────────────────────────────
+
+.dash-row {
+    display: grid;
+    gap: 20px;
+
+    &--2 { grid-template-columns: 1fr 1fr; }
+    &--3 { grid-template-columns: 1fr 1fr 1fr; }
+    &--2-1 { grid-template-columns: 2fr 1fr; }
+    &--3-2 { grid-template-columns: 3fr 2fr; }
+    &--1-2 { grid-template-columns: 1fr 2fr; }
+}
+
+.dash-card {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid $border;
+    padding: 24px;
+    box-shadow: $shadow-sm;
+
+    &--no-pad { padding: 0; }
+}
+
+.dash-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.dash-card__title {
+    font-size: 15px;
+    font-weight: 700;
+    color: $text-dark;
+}
+
+.dash-card__link {
+    font-size: 13px;
+    font-weight: 600;
+    color: $secondary-color;
+    text-decoration: none;
+
+    &:hover { opacity: 0.75; }
+}
+
+.dash-card__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+// ── Select ─────────────────────────────────────────────────
+
+.dash-select {
+    padding: 6px 28px 6px 12px;
+    border: 1px solid $border;
+    border-radius: 8px;
+    font-size: 13px;
+    color: $text-mid;
+    background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center;
+    appearance: none;
+    cursor: pointer;
+    outline: none;
+
+    &:focus { border-color: $secondary-color; }
+}
+
+// ── Table ──────────────────────────────────────────────────
+
+.dash-table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid $border;
+}
+
+.dash-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+
+    th {
+        padding: 12px 16px;
+        text-align: left;
+        font-size: 11px;
+        font-weight: 700;
+        color: $text-light;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        background: $bg-light;
+        border-bottom: 1px solid $border;
+        white-space: nowrap;
+    }
+
+    td {
+        padding: 14px 16px;
+        border-bottom: 1px solid $border;
+        vertical-align: middle;
+        color: $text-dark;
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+
+    tbody tr:hover td { background: #fafbff; }
+
+    &__muted { color: $text-mid; }
+    &__mono { font-family: monospace; font-size: 12px; }
+    &__ellipsis {
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+// ── Avatar / User cell ─────────────────────────────────────
+
+.dash-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: $secondary-color;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.dash-user-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &__name { font-weight: 600; color: $text-dark; display: block; }
+    &__sub  { font-size: 11px; color: $text-light; }
+}
+
+// ── Badges ─────────────────────────────────────────────────
+
+.dash-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+
+    &--student    { background: #eff6ff; color: #1d4ed8; }
+    &--instructor { background: #f0fdf4; color: #16a34a; }
+    &--admin      { background: #fef3c7; color: #d97706; }
+    &--paid       { background: #f0fdf4; color: #16a34a; }
+    &--pending    { background: #fef9c3; color: #ca8a04; }
+    &--failed     { background: #fef2f2; color: #dc2626; }
+    &--refunded   { background: #f5f3ff; color: #7c3aed; }
+    &--published  { background: #f0fdf4; color: #16a34a; }
+    &--draft      { background: #f8fafc; color: #64748b; }
+    &--completed  { background: #f0fdf4; color: #16a34a; }
+    &--inprogress { background: #eff6ff; color: #1d4ed8; }
+    &--notstarted { background: #f8fafc; color: #94a3b8; }
+}
+
+// ── Action buttons ─────────────────────────────────────────
+
+.dash-action-group {
+    display: flex;
+    gap: 4px;
+}
+
+.dash-action-btn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid $border;
+    background: white;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 12px;
+    color: $text-mid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+
+    &:hover { border-color: $secondary-color; color: $secondary-color; background: #eff6ff; }
+    &--danger:hover { border-color: #ef4444; color: #ef4444; background: #fef2f2; }
+}
+
+// ── Filter bar ─────────────────────────────────────────────
+
+.dash-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+
+    &__search {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: white;
+        border: 1px solid $border;
+        border-radius: 10px;
+        padding: 9px 14px;
+        flex: 1;
+        min-width: 240px;
+
+        i { color: $text-light; }
+
+        input {
+            border: none;
+            outline: none;
+            font-size: 13px;
+            width: 100%;
+            color: $text-dark;
+            &::placeholder { color: $text-light; }
+        }
+    }
+
+    &__groups {
+        display: flex;
+        gap: 10px;
+    }
+}
+
+// ── Progress bar ───────────────────────────────────────────
+
+.dash-progress {
+    height: 6px;
+    background: $border;
+    border-radius: 100px;
+    overflow: hidden;
+
+    &__fill {
+        height: 100%;
+        background: $secondary-color;
+        border-radius: 100px;
+        transition: width 0.4s ease;
+
+        &--green  { background: #10b981; }
+        &--amber  { background: #f59e0b; }
+        &--red    { background: #ef4444; }
+    }
+}
+
+// ── Rating stars ───────────────────────────────────────────
+
+.dash-rating {
+    color: #f59e0b;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.dash-stars {
+    display: flex;
+    gap: 2px;
+    color: #f59e0b;
+    font-size: 12px;
+}
+
+// ── Status dot ─────────────────────────────────────────────
+
+.dash-status-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-right: 6px;
+
+    &--active   { background: #10b981; }
+    &--inactive { background: #94a3b8; }
+    &--warning  { background: #f59e0b; }
+}
+
+// ── Checkbox ───────────────────────────────────────────────
+
+.dash-checkbox {
+    width: 15px;
+    height: 15px;
+    accent-color: $secondary-color;
+    cursor: pointer;
+}
+
+// ── Pagination ─────────────────────────────────────────────
+
+.dash-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px 0;
+    border-top: 1px solid $border;
+    margin-top: 4px;
+
+    &__info { font-size: 13px; color: $text-light; }
+}
+
+// ── Level badge ────────────────────────────────────────────
+
+.dash-level-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 100px;
+
+    &--beginner          { background: #dcfce7; color: #166534; }
+    &--elementary        { background: #e0f2fe; color: #0369a1; }
+    &--intermediate      { background: #fef3c7; color: #92400e; }
+    &--upperintermediate { background: #ede9fe; color: #5b21b6; }
+    &--advanced          { background: #fee2e2; color: #991b1b; }
+}
+
+// ── Course cell in table ───────────────────────────────────
+
+.dash-course-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    &__thumb {
+        width: 56px;
+        height: 38px;
+        border-radius: 6px;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+
+    &__title {
+        font-weight: 600;
+        color: $text-dark;
+        display: block;
+        font-size: 13px;
+    }
+
+    &__meta {
+        font-size: 11px;
+        color: $text-light;
+    }
+}
+
+// ── Responsive ─────────────────────────────────────────────
+
+@media (max-width: 1024px) {
+    .dash-sidebar {
+        transform: translateX(-100%);
+
+        &--open { transform: translateX(0); }
+    }
+
+    .dash-main { margin-left: 0; }
+
+    .dash-row {
+        &--2, &--3, &--2-1, &--3-2, &--1-2 {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .dash-topbar__search { display: none; }
+}

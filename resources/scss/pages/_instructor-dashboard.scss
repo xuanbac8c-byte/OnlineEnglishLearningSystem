@@ -1,0 +1,335 @@
+@use '../abstracts/variables' as *;
+
+// ============================================================
+// INSTRUCTOR DASHBOARD
+// ============================================================
+
+// ── Stat cards (tái dùng cấu trúc admin, override màu) ─────
+
+.ins-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+    @media (max-width: 1200px) { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 600px)  { grid-template-columns: 1fr; }
+}
+
+.ins-stat-card {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid $border;
+    padding: 22px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    box-shadow: $shadow-sm;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        border-radius: 16px 16px 0 0;
+    }
+
+    &--blue::before   { background: $secondary-color; }
+    &--green::before  { background: #10b981; }
+    &--amber::before  { background: #f59e0b; }
+    &--rose::before   { background: #f43f5e; }
+
+    &__icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+    }
+
+    &--blue   .ins-stat-card__icon { background: #eff6ff; color: $secondary-color; }
+    &--green  .ins-stat-card__icon { background: #f0fdf4; color: #10b981; }
+    &--amber  .ins-stat-card__icon { background: #fffbeb; color: #f59e0b; }
+    &--rose   .ins-stat-card__icon { background: #fff1f2; color: #f43f5e; }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    &__label {
+        font-size: 12px;
+        color: $text-light;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    &__value {
+        font-size: 26px;
+        font-weight: 800;
+        color: $text-dark;
+        line-height: 1.2;
+    }
+
+    &__sub {
+        font-size: 12px;
+        color: $text-light;
+        margin-top: 4px;
+    }
+}
+
+// ── Course performance list ────────────────────────────────
+
+.ins-course-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ins-course-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border: 1px solid $border;
+    border-radius: 12px;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+        border-color: $secondary-color;
+        box-shadow: 0 0 0 3px rgba(40,40,254,0.06);
+    }
+
+    &__thumb {
+        width: 72px;
+        height: 48px;
+        border-radius: 8px;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+
+    &__info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    &__title {
+        font-size: 14px;
+        font-weight: 700;
+        color: $text-dark;
+        margin-bottom: 6px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__meta {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    &__meta-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 12px;
+        color: $text-mid;
+
+        i { font-size: 11px; color: $text-light; }
+    }
+
+    &__actions {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+        flex-shrink: 0;
+    }
+}
+
+// ── Revenue mini-chart ─────────────────────────────────────
+
+.ins-rev-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 100px;
+    padding: 8px 0;
+}
+
+.ins-rev-bar {
+    flex: 1;
+    background: linear-gradient(180deg, #10b981, rgba(16,185,129,0.4));
+    border-radius: 4px 4px 0 0;
+    min-height: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    position: relative;
+
+    &:hover { opacity: 0.8; }
+}
+
+.ins-rev-label {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 10px;
+    color: $text-light;
+    font-weight: 600;
+}
+
+// ── Review cards ───────────────────────────────────────────
+
+.ins-review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ins-review-item {
+    padding: 14px;
+    border: 1px solid $border;
+    border-radius: 12px;
+    background: $bg-light;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+
+    &__user {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        color: $text-dark;
+    }
+
+    &__avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: $secondary-color;
+        color: white;
+        font-size: 11px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    &__course {
+        font-size: 11px;
+        color: $text-light;
+        font-weight: 400;
+    }
+
+    &__text {
+        font-size: 13px;
+        color: $text-mid;
+        line-height: 1.6;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+// ── Rating breakdown ───────────────────────────────────────
+
+.ins-rating-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ins-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &__star {
+        font-size: 12px;
+        color: $text-mid;
+        font-weight: 600;
+        width: 24px;
+        text-align: right;
+        flex-shrink: 0;
+    }
+
+    &__bar {
+        flex: 1;
+        height: 8px;
+        background: $border;
+        border-radius: 100px;
+        overflow: hidden;
+    }
+
+    &__fill {
+        height: 100%;
+        background: #f59e0b;
+        border-radius: 100px;
+    }
+
+    &__count {
+        font-size: 12px;
+        color: $text-light;
+        width: 28px;
+        text-align: right;
+        flex-shrink: 0;
+    }
+}
+
+// ── Quick action buttons ───────────────────────────────────
+
+.ins-quick-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.ins-quick-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    border: 1.5px solid $border;
+    border-radius: 12px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: $text-dark;
+    font-size: 13px;
+    font-weight: 600;
+
+    i {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: #eff6ff;
+        color: $secondary-color;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+    }
+
+    &:hover {
+        border-color: $secondary-color;
+        background: #fafbff;
+    }
+}
