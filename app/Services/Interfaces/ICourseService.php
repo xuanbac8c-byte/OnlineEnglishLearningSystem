@@ -1,7 +1,7 @@
 <?php
     use App\Models\Course;
     use Illuminate\Pagination\LengthAwarePaginator;
-    use Ramsey\Collection\Collection;
+    use Illuminate\Support\Collection;
 
     interface ICourseService {
 
