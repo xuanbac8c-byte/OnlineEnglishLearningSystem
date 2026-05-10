@@ -1,79 +1,105 @@
 <?php
-    namespace App\Services;
+
+namespace App\Services;
 
 use App\Models\QuizAttempt;
-use App\Models\Quiz;
+use App\Models\QuizOption;
 
 use Illuminate\Support\Collection;
-use IQuizAnswerService;
+use IQuizAttemptService;
 
-class QuizAttemptService implements  IQuizAnswerService
+class QuizAttemptService implements IQuizAttemptService
 {
-    public function start(int $userId, int $quizId): QuizAttempt 
+    public function start(int $userId, int $quizId): QuizAttempt
     {
         $attemptNumber = $this->getAttemptNumber($userId, $quizId) + 1;
 
         return QuizAttempt::create([
-            'user_id' => $userId,
-            'quiz_id' => $quizId,
+            'user_id'        => $userId,
+            'quiz_id'        => $quizId,
             'attempt_number' => $attemptNumber,
-            'started_at' => now(),
-            'is_passed' => false,
-            'score' => 0
+            'started_at'     => now(),
+            'is_passed'      => false,
+            'score'          => 0,
         ]);
     }
 
-    public function submit(int $attemptId): QuizAttempt 
+    public function submit(int $attemptId): QuizAttempt
     {
-        $attempt = QuizAttempt::findOrFail($attemptId);
-        $quiz = $attempt->quiz;
-        
-        $score = $this->calculateScore($attemptId);
-        $isPassed = $score >= $quiz->pass_score;
+        $attempt = QuizAttempt::with('quiz')->findOrFail($attemptId);
+        $score   = $this->calculateScore($attemptId);
+        $isPassed = $score >= $attempt->quiz->pass_score;
 
         $attempt->update([
-            'score' => $score,
-            'is_passed' => $isPassed,
-            'submitted_at' => now()
+            'score'        => $score,
+            'is_passed'    => $isPassed,
+            'submitted_at' => now(),
         ]);
 
         return $attempt;
     }
 
-    public function calculateScore(int $attemptId): float 
+    public function calculateScore(int $attemptId): float
     {
-        $attempt = QuizAttempt::with('answers.question')->findOrFail($attemptId);
-        $totalScore = 0;
+        $attempt = QuizAttempt::with('quizAnswers.question')->findOrFail($attemptId);
+        $total   = 0;
 
-        foreach ($attempt->answers as $answer) {
-            // Logic: Nếu answer_text khớp với quiz_options có is_correct = true
-            $isCorrect = \App\Models\QuizOption::where('question_id', $answer->question_id)
-                ->where('is_correct', true)
-                ->where('option_text', $answer->answer_text)
-                ->exists();
+        foreach ($attempt->quizAnswers as $answer) {
+            $isCorrect = false;
+
+            if ($answer->selected_option_id) {
+                $isCorrect = QuizOption::where('quiz_option_id', $answer->selected_option_id)
+                    ->where('is_correct', true)
+                    ->exists();
+            } elseif ($answer->answer_text) {
+                $isCorrect = QuizOption::where('question_id', $answer->question_id)
+                    ->where('is_correct', true)
+                    ->whereRaw('LOWER(option_text) = LOWER(?)', [$answer->answer_text])
+                    ->exists();
+            }
 
             if ($isCorrect) {
-                $totalScore += $answer->question->points;
+                $total += $answer->question->points ?? 1;
             }
         }
 
-        return $totalScore;
+        return (float) $total;
     }
 
-    public function getAttemptNumber(int $userId, int $quizId): int 
+    public function getByUser(int $userId): Collection
+    {
+        return QuizAttempt::where('user_id', $userId)
+            ->with('quiz')
+            ->latest()
+            ->get();
+    }
+
+    public function getByQuiz(int $quizId): Collection
+    {
+        return QuizAttempt::where('quiz_id', $quizId)
+            ->with('user')
+            ->latest()
+            ->get();
+    }
+
+    public function findById(int $id): QuizAttempt
+    {
+        return QuizAttempt::with(['quiz', 'quizAnswers'])->findOrFail($id);
+    }
+
+    public function getAttemptNumber(int $userId, int $quizId): int
     {
         return QuizAttempt::where('user_id', $userId)
             ->where('quiz_id', $quizId)
             ->count();
     }
 
-    public function getBestScore(int $userId, int $quizId): float 
+    public function getBestScore(int $userId, int $quizId): float
     {
-        return (float) QuizAttempt::where('user_id', $userId)
+        return (float) (QuizAttempt::where('user_id', $userId)
             ->where('quiz_id', $quizId)
-            ->max('score') ?? 0;
+            ->max('score') ?? 0);
     }
-    
-    // ... các hàm findById, getByUser triển khai đơn giản bằng Eloquent
 }
+
 ?>
