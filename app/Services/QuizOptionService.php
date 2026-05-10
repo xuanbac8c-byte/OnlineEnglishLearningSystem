@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Models\QuizOption;
+use App\Services\Interfaces\IQuizOptionService;
 use Illuminate\Support\Collection;
-use IQuizOptionService;
 
 class QuizOptionService implements IQuizOptionService
 {

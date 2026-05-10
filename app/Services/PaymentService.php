@@ -3,9 +3,9 @@
 namespace App\Services;
 
 use App\Models\Payment;
+use App\Services\Interfaces\IPaymentService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use IPaymentService;
 
 class PaymentService implements IPaymentService
 {

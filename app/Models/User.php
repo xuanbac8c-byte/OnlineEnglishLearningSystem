@@ -37,7 +37,7 @@ use Illuminate\Database\Eloquent\Model;
             return $this->hasMany(Enrollment::class, 'user_id');
         }
         public function courses() : HasMany {
-            return $this->hasMany(Course::class, 'user_id');
+            return $this->hasMany(Course::class, 'teacher_id','user_id');
         }
         public function courseReviews() : HasMany{
             return $this->hasMany(CourseReview::class, 'user_id');

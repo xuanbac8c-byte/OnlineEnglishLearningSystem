@@ -18,11 +18,8 @@
 
         protected $casts = [
             'question_id' => 'integer',
-            'option_text' => 'string',
             'is_correct' => 'bool',
             'sort_order' => 'integer',
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime'
         ];
         
         public function quizQuestion() : BelongsTo {

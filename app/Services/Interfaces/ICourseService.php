@@ -1,10 +1,11 @@
 <?php
+    namespace App\Services\Interfaces;
     use App\Models\Course;
     use Illuminate\Pagination\LengthAwarePaginator;
     use Illuminate\Support\Collection;
 
-    interface ICourseService {
-
+    interface ICourseService 
+    {
     public function getAll(array $filters = [], int $perPage = 12): LengthAwarePaginator;
     public function getPublished(array $filters = []): LengthAwarePaginator;
     public function findById(int $id): Course;
@@ -15,5 +16,5 @@
     public function unpublish(int $id): Course;
     public function getByInstructor(int $teacherId): Collection;
     public function getWithDetails(int $id): Course; // with sections, lessons, reviews
-}
+    }
 ?>
