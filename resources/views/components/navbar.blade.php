@@ -12,7 +12,7 @@
         <a href="/">Home</a>
         <a href="/courses">Courses</a>
         <a href="/about">Road Maps</a>
-        <a href="/contact">Instructors</a>
+        <a href="/instructors">Instructors</a>
         <a href="/blog">Blog</a>
         <a href="/about">About Us</a>
     </div>

@@ -11,7 +11,7 @@ class InstructorController extends Controller {
             ->with(['courses'])
             ->paginate(9);
 
-        return view('pages.instructors', compact('instructors'));
+        return view('pages.instructor.index', compact('instructors'));
     }
 
     public function show($id) {
