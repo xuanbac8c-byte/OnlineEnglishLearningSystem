@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Enrollment;
-use Ramsey\Collection\Collection;
+use Illuminate\Support\Collection;
 
     interface IEnrollmentService {
     public function enroll(int $userId, int $courseId): Enrollment;

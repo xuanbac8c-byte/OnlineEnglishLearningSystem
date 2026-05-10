@@ -1,7 +1,7 @@
 <?php
 
     use App\Models\Certificate;
-    use Ramsey\Collection\Collection;
+use Illuminate\Support\Collection;
 
     interface ICertificateService {
     public function issue(int $userId, int $courseId): Certificate;

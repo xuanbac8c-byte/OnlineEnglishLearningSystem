@@ -1,7 +1,7 @@
 <?php
 
     use App\Models\LessonProgress;
-    use Ramsey\Collection\Collection;
+    use Illuminate\Support\Collection;
 
     interface ILessonProgressService {
     public function updateProgress(int $userId, int $lessonId, float $percent): LessonProgress;

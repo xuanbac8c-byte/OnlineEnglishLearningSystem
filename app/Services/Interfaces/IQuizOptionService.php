@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\QuizOption;
-use Ramsey\Collection\Collection;
+    use App\Models\QuizOption;
+    use Illuminate\Support\Collection;
 
     interface IQuizOptionService {
     public function getByQuestion(int $questionId): Collection;

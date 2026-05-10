@@ -1,7 +1,7 @@
 <?php
 
     use App\Models\QuizAttempt;
-    use Ramsey\Collection\Collection;
+    use Illuminate\Support\Collection;
 
     interface IQuizAttemptService {
     public function start(int $userId, int $quizId): QuizAttempt;

@@ -1,7 +1,7 @@
 <?php
 
     use App\Models\Quiz;
-    use Ramsey\Collection\Collection;
+    use Illuminate\Support\Collection;
 
     interface IQuizService {
     public function getByLesson(int $lessonId): Collection;

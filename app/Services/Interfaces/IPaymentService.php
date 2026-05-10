@@ -1,7 +1,7 @@
 <?php
 
     use App\Models\Payment;
-    use Ramsey\Collection\Collection;
+    use Illuminate\Support\Collection;
 
     interface IPaymentService {
     public function createPayment(int $userId, int $courseId, array $data): Payment;
