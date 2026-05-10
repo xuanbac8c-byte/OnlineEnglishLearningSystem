@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Models\Section;
+use App\Services\Interfaces\ISectionService;
 use Illuminate\Support\Collection;
-use ISectionService;
 
 class SectionService implements ISectionService
 {

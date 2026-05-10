@@ -4,8 +4,8 @@ namespace App\Services;
 
 use App\Models\Quiz;
 use App\Models\QuizAttempt;
+use App\Services\Interfaces\IQuizService;
 use Illuminate\Support\Collection;
-use IQuizService;
 
 class QuizService implements IQuizService
 {

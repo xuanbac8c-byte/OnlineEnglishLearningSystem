@@ -4,8 +4,9 @@ namespace App\Services;
 
 use App\Models\QuizAnswer;
 use App\Models\QuizOption;
+use App\Services\Interfaces\IQuizAnswerService;
 use Illuminate\Support\Collection;
-use IQuizAnswerService;
+
 
 class QuizAnswerService implements IQuizAnswerService
 {
@@ -64,7 +65,7 @@ class QuizAnswerService implements IQuizAnswerService
             ->count();
     }
 
-    // ── Private helper ──────────────────────────────────────
+    // Private helper
 
     private function checkCorrect(int $questionId, array $data): bool
     {

@@ -21,7 +21,7 @@
             'sort_order' => 'integer'
         ];
 
-        public function courses() : BelongsTo {
+        public function course() : BelongsTo {
             return $this->belongsTo(Course::class, 'course_id');
         }
         public function lessons() : HasMany {

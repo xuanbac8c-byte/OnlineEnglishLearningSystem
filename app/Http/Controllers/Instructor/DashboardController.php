@@ -1,20 +1,19 @@
 <?php
+
 namespace App\Http\Controllers\Instructor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
-use App\Models\Enrollment;
 use App\Models\CourseReview;
+use App\Models\Enrollment;
 use App\Models\Payment;
-use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $teacherId = Auth::id();
+        $teacherId = session('user_id');
 
-        // Lấy khóa học của giảng viên
         $my_courses = Course::where('teacher_id', $teacherId)
             ->withCount(['enrollments', 'sections'])
             ->withAvg('courseReviews', 'rating')
@@ -25,19 +24,19 @@ class DashboardController extends Controller
         $allCourseIds = Course::where('teacher_id', $teacherId)->pluck('course_id');
 
         $stats = [
-            'my_courses'        => Course::where('teacher_id', $teacherId)->count(),
-            'published_courses' => Course::where('teacher_id', $teacherId)->where('is_published', true)->count(),
-            'total_students'    => Enrollment::whereIn('course_id', $allCourseIds)->distinct('user_id')->count('user_id'),
-            'new_students_month'=> Enrollment::whereIn('course_id', $allCourseIds)
-                                    ->where('enrolled_at', '>=', now()->startOfMonth())
-                                    ->count(),
-            'avg_rating'        => CourseReview::whereIn('course_id', $allCourseIds)->avg('rating') ?? 0,
-            'total_reviews'     => CourseReview::whereIn('course_id', $allCourseIds)->count(),
-            'total_revenue'     => Payment::whereIn('course_id', $allCourseIds)->where('status', 'paid')->sum('amount'),
-            'month_revenue'     => Payment::whereIn('course_id', $allCourseIds)
-                                    ->where('status', 'paid')
-                                    ->where('paid_at', '>=', now()->startOfMonth())
-                                    ->sum('amount'),
+            'my_courses'         => Course::where('teacher_id', $teacherId)->count(),
+            'published_courses'  => Course::where('teacher_id', $teacherId)->where('is_published', true)->count(),
+            'total_students'     => Enrollment::whereIn('course_id', $allCourseIds)->distinct('user_id')->count('user_id'),
+            'new_students_month' => Enrollment::whereIn('course_id', $allCourseIds)
+                                        ->where('enrolled_at', '>=', now()->startOfMonth())
+                                        ->count(),
+            'avg_rating'         => round(CourseReview::whereIn('course_id', $allCourseIds)->avg('rating') ?? 0, 1),
+            'total_reviews'      => CourseReview::whereIn('course_id', $allCourseIds)->count(),
+            'total_revenue'      => Payment::whereIn('course_id', $allCourseIds)->where('status', 'paid')->sum('amount'),
+            'month_revenue'      => Payment::whereIn('course_id', $allCourseIds)
+                                        ->where('status', 'paid')
+                                        ->where('paid_at', '>=', now()->startOfMonth())
+                                        ->sum('amount'),
         ];
 
         $recent_reviews = CourseReview::with(['user', 'course'])
@@ -59,7 +58,7 @@ class DashboardController extends Controller
 
     public function courses()
     {
-        $courses = Course::where('teacher_id', Auth::id())
+        $courses = Course::where('teacher_id', session('user_id')) // Fix: session thay Auth::id()
             ->withCount(['enrollments', 'sections'])
             ->withAvg('courseReviews', 'rating')
             ->latest()
@@ -73,3 +72,5 @@ class DashboardController extends Controller
         return view('pages.instructor.create-course');
     }
 }
+
+?>

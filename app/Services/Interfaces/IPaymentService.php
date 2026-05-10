@@ -1,9 +1,10 @@
 <?php
-
+    namespace App\Services\Interfaces;
     use App\Models\Payment;
     use Illuminate\Support\Collection;
 
-    interface IPaymentService {
+    interface IPaymentService 
+    {
     public function createPayment(int $userId, int $courseId, array $data): Payment;
     public function confirmPayment(string $transactionRef): Payment;
     public function refund(int $paymentId): Payment;
@@ -12,5 +13,5 @@
     public function findByRef(string $transactionRef): ?Payment;
     public function isPaid(int $userId, int $courseId): bool;
     public function getRevenue(int $courseId): float;
-}
+    }
 ?>

@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Lesson;
-use ILessonService;
+use App\Services\Interfaces\ILessonService;
 use Illuminate\Support\Collection;
 
 class LessonService implements ILessonService
