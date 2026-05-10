@@ -33,6 +33,7 @@ use App\Http\Controllers\Instructor\QuizManagerController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\UserController as AdminUser;
 use App\Http\Controllers\Admin\CourseController as AdminCourse;
+use App\Http\Controllers\Auth\RegisterController as AuthRegisterController;
 
 // ============================================================
 // PUBLIC ROUTES
@@ -46,8 +47,8 @@ Route::get('/roadmap', [RoadMapController::class, 'index'])->name('roadmap');
 Route::get('/courses',      [CourseController::class, 'index'])->name('courses.index');
 Route::get('/courses/{id}', [CourseController::class, 'show'])->name('courses.show');
 
-Route::get('/instructors',      [InstructorController::class, 'index'])->name('instructors.index');
-Route::get('/instructors/{id}', [InstructorController::class, 'show'])->name('instructors.show');
+Route::get('/instructors',      [InstructorController::class, 'index'])->name('instructor.index');
+Route::get('/instructors/{id}', [InstructorController::class, 'show'])->name('instructor.show');
 
 Route::get('/blog',        [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
@@ -63,8 +64,8 @@ Route::get('/verify/{code}', [CertificateController::class, 'show'])->name('cert
 Route::middleware('guest_session')->group(function () {
     Route::get('/login',    [LoginController::class, 'showForm'])->name('login');
     Route::post('/login',   [LoginController::class, 'login'])->name('login.post');
-    Route::get('/register', [RegisterController::class, 'showForm'])->name('register');
-    Route::post('/register',[RegisterController::class, 'register'])->name('register.post');
+    Route::get('/register', [AuthRegisterController::class, 'showForm'])->name('register');
+    Route::post('/register',[AuthRegisterController::class, 'register'])->name('register.post');
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

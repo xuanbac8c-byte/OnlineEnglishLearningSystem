@@ -20,22 +20,5 @@ class UserController extends Controller
 
         return view('pages.admin.users', compact('users'));
     }
-
-    // Register vẫn giữ lại ở đây để dùng với route /register (nếu cần)
-    // Nhưng nên dùng Auth/RegisterController::register() thay thế
-    public function register(Request $request)
-    {
-        $validated = $request->validate([
-            'fullname' => 'required|max:255',
-            'email'    => 'required|email|unique:users,email',
-            'password' => 'required|min:8|confirmed',
-            'role'     => 'required|in:student,instructor',
-            'terms'    => 'required',
-        ]);
-
-        $this->userService->createUser($validated);
-
-        return redirect()->route('login')->with('success', 'Tạo tài khoản thành công!');
-    }
 }
 ?>
