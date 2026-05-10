@@ -12,7 +12,7 @@
             <h2>Tạo tài khoản miễn phí</h2>
             <p>Tham gia cùng 15,000+ học viên đang học tại E-Learn.</p>
         </div>
-
+        
         {{-- Social Register --}}
         <div class="auth-social">
             <button class="social-btn social-btn--google">

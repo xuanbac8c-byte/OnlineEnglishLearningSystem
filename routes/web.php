@@ -36,5 +36,14 @@ Route::get('/instructors/{id}', function ($id) {
 Route::view('/login', 'pages.login')->name('login');
 Route::view('/register', 'pages.register')->name('register');
 
+Route::post('/register', [UserController::class, 'register']);
+
 // Users
 Route::resource('users', UserController::class);
+// Users Role Admin
+Route::middleware(['auth', 'admin'])
+    ->group(function (){
+        Route::get('/admin/users', [
+            UserController::class, 'index'
+        ]);
+    });

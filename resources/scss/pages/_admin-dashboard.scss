@@ -1,0 +1,215 @@
+@use '../abstracts/variables' as *;
+
+// ============================================================
+// ADMIN DASHBOARD
+// ============================================================
+
+// ── Stat cards grid ────────────────────────────────────────
+
+.dash-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+    @media (max-width: 1200px) { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 600px)  { grid-template-columns: 1fr; }
+}
+
+.dash-stat-card {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid $border;
+    padding: 22px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    box-shadow: $shadow-sm;
+    position: relative;
+    overflow: hidden;
+
+    // Accent stripe top
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        border-radius: 16px 16px 0 0;
+    }
+
+    &--blue::before   { background: $secondary-color; }
+    &--green::before  { background: #10b981; }
+    &--amber::before  { background: #f59e0b; }
+    &--purple::before { background: #8b5cf6; }
+
+    &__icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+    }
+
+    &--blue   .dash-stat-card__icon { background: #eff6ff; color: $secondary-color; }
+    &--green  .dash-stat-card__icon { background: #f0fdf4; color: #10b981; }
+    &--amber  .dash-stat-card__icon { background: #fffbeb; color: #f59e0b; }
+    &--purple .dash-stat-card__icon { background: #f5f3ff; color: #8b5cf6; }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    &__label {
+        font-size: 12px;
+        color: $text-light;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    &__value {
+        font-size: 26px;
+        font-weight: 800;
+        color: $text-dark;
+        line-height: 1.2;
+    }
+
+    &__trend {
+        font-size: 12px;
+        font-weight: 600;
+        margin-top: 4px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        &--up   { color: #10b981; }
+        &--down { color: #ef4444; }
+        &--flat { color: $text-light; }
+    }
+}
+
+// ── Bar chart (revenue) ────────────────────────────────────
+
+.dash-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 180px;
+    padding: 0 4px;
+}
+
+.dash-chart__col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    height: 100%;
+}
+
+.dash-chart__bar-wrap {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.dash-chart__bar {
+    width: 100%;
+    background: linear-gradient(180deg, $secondary-color, rgba(40,40,254,0.5));
+    border-radius: 6px 6px 0 0;
+    transition: height 0.5s ease;
+    cursor: pointer;
+    min-height: 4px;
+
+    &:hover { background: linear-gradient(180deg, darken(rgb(40,40,254), 10%), $secondary-color); }
+}
+
+.dash-chart__label {
+    font-size: 10px;
+    color: $text-light;
+    font-weight: 600;
+}
+
+// ── Donut chart (role breakdown) ───────────────────────────
+
+.dash-donut-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 12px 0;
+}
+
+.dash-donut {
+    width: 140px;
+    height: 140px;
+}
+
+.dash-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 4px;
+}
+
+.dash-legend__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: $text-mid;
+
+    span:last-child { margin-left: auto; font-weight: 700; color: $text-dark; }
+}
+
+.dash-legend__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+// ── Course row in "top courses" ────────────────────────────
+
+.dash-course-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid $border;
+
+    &:last-child { border-bottom: none; padding-bottom: 0; }
+
+    &__thumb {
+        width: 52px;
+        height: 36px;
+        border-radius: 8px;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+
+    &__info {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__title {
+        font-size: 13px;
+        font-weight: 600;
+        color: $text-dark;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__meta {
+        font-size: 11px;
+        color: $text-light;
+        margin-top: 2px;
+    }
+}
