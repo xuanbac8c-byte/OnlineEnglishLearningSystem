@@ -10,17 +10,17 @@
     <!-- Column 2: Navigation Links -->
     <div class="navbar__links">
         <a href="/">Home</a>
-        <a href="/courses">Courses</a>
-        <a href="/about">Road Maps</a>
-        <a href="/instructors">Instructors</a>
-        <a href="/blog">Blog</a>
-        <a href="/about">About Us</a>
+        <a href="{{route('courses.index')}}">Courses</a>
+        <a href="{{route('roadmap')}}">Road Maps</a>
+        <a href="{{route('instructor.index')}}">Instructors</a>
+        <a href="{{route('blog.index')}}">Blog</a>
+        <a href="{{route('about')}}">About Us</a>
     </div>
 
     <!-- Column 3: User Actions -->
     <div class="navbar__actions">
         <input type="text" placeholder="search...">
-        <a href="/login" class="btn btn--primary">Login</a>
-        <a href="/register" class="btn btn--secondary">Register</a>
+        <a href="{{route('login')}}" class="btn btn--primary">Login</a>
+        <a href="{{route('register')}}" class="btn btn--secondary">Register</a>
     </div>
 </nav>

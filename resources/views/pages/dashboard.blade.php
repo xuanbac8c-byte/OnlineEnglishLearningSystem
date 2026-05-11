@@ -92,7 +92,7 @@
         <div class="stu-continue-card__progress-wrap">
             <div class="stu-continue-card__progress-bar">
                 <div class="stu-continue-card__progress-fill"
-                     style="width: '{{ $continue_progress }}%'">
+                     style="width: {{ $continue_progress }}%">
                 </div>
             </div>
             <span class="stu-continue-card__percent">{{ $continue_progress }}%</span>
@@ -137,7 +137,7 @@
                     <div class="stu-course-item__progress-wrap">
                         <div class="stu-course-item__progress-bar">
                             <div class="stu-course-item__progress-fill"
-                                 style="width: '{{ $progress }}%'; background: '{{ $color }}'">
+                                 style="width: {{ $progress }}%; background: {{ $color }}">
                             </div>
                         </div>
                         <span class="stu-course-item__percent">{{ $progress }}%</span>
