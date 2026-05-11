@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Instructor;
 use App\Http\Controllers\Controller;
 use App\Models\Quiz;
 use App\Models\QuizQuestion;
+use App\Services\Interfaces\IQuizOptionService;
+use App\Services\Interfaces\IQuizService;
 use Illuminate\Http\Request;
-use IQuizOptionService;
-use IQuizService;
 
 class QuizManagerController extends Controller
 {
@@ -15,8 +15,6 @@ class QuizManagerController extends Controller
         protected IQuizService       $quizService,
         protected IQuizOptionService $optionService,
     ) {}
-
-    // ── Quiz ─────────────────────────────────────────────────
 
     public function show(int $quizId)
     {
@@ -60,8 +58,6 @@ class QuizManagerController extends Controller
         return back()->with('success', 'Đã xoá quiz.');
     }
 
-    // ── Question ─────────────────────────────────────────────
-
     public function storeQuestion(Request $request, int $quizId)
     {
         $data = $request->validate([
@@ -93,8 +89,6 @@ class QuizManagerController extends Controller
         return back()->with('success', 'Đã xoá câu hỏi.');
     }
 
-    // ── Option ───────────────────────────────────────────────
-
     public function storeOption(Request $request, int $questionId)
     {
         $data = $request->validate([
@@ -124,9 +118,6 @@ class QuizManagerController extends Controller
         return back()->with('success', 'Đã xoá đáp án.');
     }
 
-    /**
-     * Đánh dấu duy nhất 1 đáp án đúng (single choice).
-     */
     public function setCorrectOption(int $optionId)
     {
         $this->optionService->setCorrect($optionId);

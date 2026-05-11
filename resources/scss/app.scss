@@ -30,6 +30,9 @@
 @use './pages/auth';
 @use './pages/blog';
 @use './pages/instructor';
+@use './pages/student-dashboard';
+@use './pages/instructor-dashboard';
+@use './pages/admin-dashboard';
 
 // Responsive
 @use './responsives/responsive';

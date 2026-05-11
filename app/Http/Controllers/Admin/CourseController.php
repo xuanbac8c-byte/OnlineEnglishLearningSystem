@@ -17,7 +17,8 @@ class CourseController extends Controller
         $filters = $request->only(['level', 'keyword']);
         $courses = $this->courseService->getAll($filters, 20);
 
-        return view('pages.admin.courses', compact('courses'));
+        // FIX: view name phải khớp với file course-manager.blade.php
+        return view('pages.admin.course-manager', compact('courses'));
     }
 
     public function show(int $courseId)

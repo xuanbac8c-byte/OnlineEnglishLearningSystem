@@ -11,7 +11,7 @@ class BlogController extends Controller
 
     public function show(string $slug)
     {
-        // Placeholder — sẽ implement khi có Blog model
+        
         abort(404);
     }
 }
