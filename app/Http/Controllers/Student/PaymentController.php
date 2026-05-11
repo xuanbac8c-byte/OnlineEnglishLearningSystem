@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
-use IEnrollmentService;
+use App\Services\Interfaces\IEnrollmentService;
+use App\Services\Interfaces\IPaymentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use IPaymentService;
 
 class PaymentController extends Controller
 {

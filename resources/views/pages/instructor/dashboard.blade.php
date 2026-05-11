@@ -147,7 +147,7 @@
             <div class="ins-rev-chart">
                 @foreach($revMonths as $i => $m)
                 <div class="ins-rev-bar"
-                     style="height: '{{ round(($revData[$i] / $maxRev2) * 100) }}%'"
+                     style="height: {{ round(($revData[$i] / $maxRev2) * 100) }}%"
                      title="{{ $m }}: {{ $revData[$i] }}tr đ">
                 </div>
                 @endforeach
@@ -176,7 +176,7 @@
                     <span class="ins-rating-row__star">{{ $star }}★</span>
                     <div class="ins-rating-row__bar">
                         <div class="ins-rating-row__fill"
-                             style="width: '{{ $totalReviews ? round($count / $totalReviews * 100) : 0 }}%'">
+                             style="width: {{ $totalReviews ? round($count / $totalReviews * 100) : 0 }}%">
                         </div>
                     </div>
                     <span class="ins-rating-row__count">{{ $count }}</span>
@@ -268,7 +268,7 @@
                         <td>
                             <div class="dash-user-cell">
                                 <div class="dash-avatar"
-                                     style="background: 'hsl({{ ($enrollment->user->user_id ?? 1) * 53 % 360 }}, 60%, 55%)'">
+                                     style="background-color: hsl({{ (($enrollment->user->user_id ?? 1) * 53) % 360 }}, 60%, 55%);">
                                     {{ mb_substr($enrollment->user->fullname ?? 'U', 0, 1) }}
                                 </div>
                                 <span>{{ $enrollment->user->fullname ?? '—' }}</span>

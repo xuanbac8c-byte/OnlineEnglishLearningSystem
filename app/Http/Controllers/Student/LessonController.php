@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use ICertificateService;
-use IEnrollmentService;
-use ILessonProgressService;
-use ILessonService;
+use App\Services\Interfaces\ICertificateService;
+use App\Services\Interfaces\IEnrollmentService;
+use App\Services\Interfaces\ILessonProgressService;
+use App\Services\Interfaces\ILessonService;
 use Illuminate\Http\Request;
 
 class LessonController extends Controller

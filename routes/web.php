@@ -13,7 +13,6 @@ use App\Http\Controllers\ProfileController;
 
 // ── Auth ─────────────────────────────────────────────────────
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\RegisterController;
 
 // ── Student ──────────────────────────────────────────────────
 use App\Http\Controllers\Student\DashboardController as StudentDashboard;
@@ -33,7 +32,7 @@ use App\Http\Controllers\Instructor\QuizManagerController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\UserController as AdminUser;
 use App\Http\Controllers\Admin\CourseController as AdminCourse;
-use App\Http\Controllers\Auth\RegisterController as AuthRegisterController;
+use App\Http\Controllers\Auth\RegisterController;
 
 // ============================================================
 // PUBLIC ROUTES
@@ -64,8 +63,8 @@ Route::get('/verify/{code}', [CertificateController::class, 'show'])->name('cert
 Route::middleware('guest_session')->group(function () {
     Route::get('/login',    [LoginController::class, 'showForm'])->name('login');
     Route::post('/login',   [LoginController::class, 'login'])->name('login.post');
-    Route::get('/register', [AuthRegisterController::class, 'showForm'])->name('register');
-    Route::post('/register',[AuthRegisterController::class, 'register'])->name('register.post');
+    Route::get('/register', [RegisterController::class, 'showForm'])->name('register');
+    Route::post('/register',[RegisterController::class, 'register'])->name('register.post');
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

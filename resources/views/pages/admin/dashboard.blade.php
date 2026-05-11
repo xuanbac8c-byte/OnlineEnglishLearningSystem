@@ -123,7 +123,7 @@
             <div class="dash-chart__col">
                 <div class="dash-chart__bar-wrap">
                     <div class="dash-chart__bar"
-                         style="height: '{{ round(($revenues[$i] / $maxRev) * 100) }}%'"
+                         style="height: {{ round(($revenues[$i] / $maxRev) * 100) }}%"
                          title="{{ $m }}: {{ $revenues[$i] }}tr đ">
                     </div>
                 </div>
@@ -213,7 +213,7 @@
                     <td>
                         <div class="dash-user-cell">
                             <div class="dash-avatar"
-                                 style="background: 'hsl({{ $user->user_id * 47 % 360 }}, 65%, 55%)'">
+                                 style="background: hsl({{ $user->user_id * 47 % 360 }}, 65%, 55%)">
                                 {{ mb_substr($user->fullname, 0, 1) }}
                             </div>
                             <div>

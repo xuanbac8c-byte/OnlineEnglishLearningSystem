@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use ICourseReviewService;
-use IEnrollmentService;
+use App\Services\Interfaces\ICourseReviewService;
+use App\Services\Interfaces\IEnrollmentService;
 use Illuminate\Http\Request;
 
 class CourseReviewController extends Controller

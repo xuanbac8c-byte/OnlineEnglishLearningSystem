@@ -61,10 +61,10 @@
                     @foreach($courses as $index => $course)
                         <x-course-card
                             :id="$index + 1"
-                            :thumbnail="$course->image"
+                            :thumbnail="$course->thumbnail_url"
                             :level="$course->level"
                             :title="$course->title"
-                            :rating="$course->rating"
+                            :rating="$course->course_review_avg_rating ?? 0"
                             :price="$course->price"
                             instructor=""
                         />

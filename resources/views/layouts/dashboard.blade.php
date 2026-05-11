@@ -29,14 +29,14 @@
         <div class="dash-sidebar__bottom">
             <div class="dash-sidebar__user">
                 <div class="dash-sidebar__user-avatar">
-                    {{ mb_substr(auth()->user()->fullname ?? 'U', 0, 1) }}
+                    {{ mb_substr(session('fullname', 'User'), 0, 1) }}
                 </div>
                 <div class="dash-sidebar__user-info">
                     <span class="dash-sidebar__user-name">
-                        {{ auth()->user()->fullname ?? 'User' }}
+                        {{ session('fullname', 'User') }}
                     </span>
                     <span class="dash-sidebar__user-role">
-                        {{ auth()->user()->role?->value ?? 'student' }}
+                        {{ session('role', 'student') }}
                     </span>
                 </div>
             </div>

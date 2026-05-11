@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Services\Interfaces\IQuizAnswerService;
+use App\Services\Interfaces\IQuizAttemptService;
+use App\Services\Interfaces\IQuizOptionService;
+use App\Services\Interfaces\IQuizService;
 use Illuminate\Http\Request;
-use IQuizAnswerService;
-use IQuizAttemptService;
-use IQuizOptionService;
-use IQuizService;
 
 class QuizController extends Controller
 {
