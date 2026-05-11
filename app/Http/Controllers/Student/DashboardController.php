@@ -7,8 +7,7 @@ use App\Models\Certificate;
 use App\Models\Enrollment;
 use App\Models\LessonProgress;
 use App\Models\QuizAttempt;
-use ILessonProgressService;
-use Illuminate\Support\Facades\Auth;
+use App\Services\Interfaces\ILessonProgressService;
 
 class DashboardController extends Controller
 {

@@ -20,8 +20,6 @@ return new class extends Migration
             $table->boolean('is_correct')->default(false);
             $table->integer('sort_order')->default(0);
 
-            $table->timestamps();
-
             // FK
             $table->foreign('question_id')
                 ->references('quiz_question_id')

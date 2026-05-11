@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use ICertificateService;
+use App\Services\Interfaces\ICertificateService;
 use Illuminate\Http\Request;
 
 class CertificateController extends Controller

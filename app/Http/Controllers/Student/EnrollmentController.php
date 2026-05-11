@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use IEnrollmentService;
+use App\Services\Interfaces\IEnrollmentService;
+use App\Services\Interfaces\IPaymentService;
 use Illuminate\Http\Request;
-use IPaymentService;
 
 class EnrollmentController extends Controller
 {

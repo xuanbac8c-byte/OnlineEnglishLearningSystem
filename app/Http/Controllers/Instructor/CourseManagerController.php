@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Instructor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Language;
-use ICourseService;
-use ILessonService;
+use App\Services\Interfaces\ICourseService;
+use App\Services\Interfaces\ILessonService;
+use App\Services\Interfaces\ISectionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use ISectionService;
 
 class CourseManagerController extends Controller
 {
