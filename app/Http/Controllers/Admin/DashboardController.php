@@ -45,18 +45,15 @@ class DashboardController extends Controller
 
     public function users()
     {
-        $users = User::latest()->paginate(20);
-        return view('pages.admin.users', compact('users'));
+        // Delegate to AdminUser — redirect về đúng route
+        return redirect()->route('admin.users');
     }
 
     public function courses()
     {
-        $courses = Course::with('user')
-            ->withCount(['enrollments', 'sections'])
-            ->withAvg('courseReviews', 'rating')
-            ->latest()
-            ->paginate(20);
-
-        return view('pages.admin.courses', compact('courses'));
+        // Delegate to AdminCourse — redirect về đúng route
+        return redirect()->route('admin.courses');
     }
 }
+
+?>

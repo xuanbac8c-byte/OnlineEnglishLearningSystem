@@ -27,7 +27,8 @@ class UserController extends Controller
 
         $users = $query->paginate(20)->withQueryString();
 
-        return view('pages.admin.users', compact('users'));
+        // FIX: view name phải khớp với file resources/views/pages/admin/usermanager.blade.php
+        return view('pages.admin.usermanager', compact('users'));
     }
 
     public function show(int $userId)
@@ -78,7 +79,6 @@ class UserController extends Controller
 
     public function destroy(int $userId)
     {
-        // Không xoá chính mình
         if ($userId === session('user_id')) {
             return back()->withErrors('Không thể xoá tài khoản đang đăng nhập.');
         }

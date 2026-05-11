@@ -47,14 +47,14 @@ Route::get('/courses',      [CourseController::class, 'index'])->name('courses.i
 Route::get('/courses/{id}', [CourseController::class, 'show'])->name('courses.show');
 
 Route::get('/instructors',      [InstructorController::class, 'index'])->name('instructor.index');
-Route::get('/instructors/{id}', [InstructorController::class, 'show'])->name('instructor.show');
+Route::get('/instructors/{id}', [InstructorController::class, 'show'])->name('instructor.show'); // error
 
 Route::get('/blog',        [BlogController::class, 'index'])->name('blog.index');
-Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show'); // error
 
 // Certificate verify (public)
-Route::get('/verify',        [CertificateController::class, 'verify'])->name('certificate.verify');
-Route::get('/verify/{code}', [CertificateController::class, 'show'])->name('certificate.show');
+Route::get('/verify',        [CertificateController::class, 'verify'])->name('certificate.verify'); //error
+Route::get('/verify/{code}', [CertificateController::class, 'show'])->name('certificate.show'); // error
 
 // ============================================================
 // AUTH ROUTES
@@ -67,7 +67,7 @@ Route::middleware('guest_session')->group(function () {
     Route::post('/register',[RegisterController::class, 'register'])->name('register.post');
 });
 
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout'); // error
 
 // ============================================================
 // AUTHENTICATED ROUTES

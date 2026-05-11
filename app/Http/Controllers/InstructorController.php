@@ -14,7 +14,7 @@ class InstructorController extends Controller {
         return view('pages.instructor.index', compact('instructors'));
     }
 
-    public function show($id) {
+    public function show(int $id) {
         $instructor = User::where('role', UserRole::instructor)
             ->with(['courses' => fn($q) => $q->where('is_published', true)])
             ->findOrFail($id);
